@@ -15,11 +15,12 @@ public class YandexWeather {
     String resp;
     YandexWeatherApi weatherApi = new YandexWeatherApi();
 
-    public YandexWeather(String lat, String lon, int limit) {
+    public YandexWeather(String lat, String lon, int limit) throws JsonProcessingException, JsonMappingException, JsonParseException {
         this.lat = lat;
         this.lon = lon;
         this.limit = limit;
         this.resp = sendHttpRequest();
+        this.weatherApi = ApiParser.parseApi(resp, weatherApi);
     }
     public String sendHttpRequest() {
         String resp;
@@ -40,20 +41,16 @@ public class YandexWeather {
         }
     }
 
-    public String getLocation() throws JsonProcessingException, JsonMappingException, JsonParseException, URISyntaxException {
-        weatherApi = ApiParser.parseApi(resp, weatherApi);
+    public String getLocation() {
         return weatherApi.info.tzinfo.name;
     }
-    public String getTemp() throws JsonProcessingException, JsonMappingException, JsonParseException, URISyntaxException {
-        weatherApi = ApiParser.parseApi(resp, weatherApi);
+    public String getTemp() {
         return weatherApi.fact.temp;
     }
 
-    public Integer getForecastsAvg() throws JsonProcessingException, JsonMappingException, JsonParseException, URISyntaxException {
-        weatherApi = ApiParser.parseApi(resp, weatherApi);
+    public Integer getForecastsAvg() {
         int days = 0;
         int sum = 0;
-
         for ( int i=0; i < weatherApi.forecasts.length; i++) {
             days++;
             sum += Integer.parseInt(weatherApi.forecasts[i].parts.day.temp_avg);
