@@ -33,7 +33,7 @@ public class YandexWeather {
         try{
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             System.out.println("Полный ответ от сервера: " + response.body());
-            return response.body().toString();
+            return response.body();
 
         } catch (Exception e) {
             return "Error occurred while sending GET request: " + e.getMessage();
@@ -54,8 +54,7 @@ public class YandexWeather {
             days++;
             sum += Integer.parseInt(weatherApi.forecasts[i].parts.day.temp_avg);
         }
-        int forecatsAvgAvg = sum / days;
-        return forecatsAvgAvg;
+        return sum / days;
     }
 }
 
