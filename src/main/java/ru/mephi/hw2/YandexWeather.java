@@ -23,7 +23,6 @@ public class YandexWeather {
         this.weatherApi = ApiParser.parseApi(resp, weatherApi);
     }
     public String sendHttpRequest() {
-        String resp;
         HttpClient httpClient = HttpClient.newHttpClient();
         URI uri = URI.create("https://api.weather.yandex.ru/v2/forecast?lat=" + lat + "&lon=" + lon + "&limit=" + limit);
         HttpRequest request = HttpRequest.newBuilder()
