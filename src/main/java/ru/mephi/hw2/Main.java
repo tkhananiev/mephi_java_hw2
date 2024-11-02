@@ -14,7 +14,7 @@ public class Main {
             System.out.println("Введите Долготу: (например: -74.002863 (долгота Нью-Йорка))");
             String lon = scanner.nextLine();
             System.out.println("Введите количество дней, за которое необходимо получить среднее арифметическое температуры: (например 5)");
-            Integer limit = scanner.nextInt();
+            int limit = scanner.nextInt();
             YandexWeather weather = new YandexWeather(lat, lon, limit);
             System.out.println("Широта: " + lat + " Долгота: " + lon + " Количество дней: " + limit);
             System.out.println("Температура в населенном пункте " + weather.getLocation() + ": " + weather.getTemp() + "° по Цельсию");

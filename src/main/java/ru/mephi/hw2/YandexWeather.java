@@ -54,8 +54,8 @@ public class YandexWeather {
             days++;
             sum += Integer.parseInt(weatherApi.forecasts[i].parts.day.temp_avg);
         }
-        int forecatsAvg = sum / days;
-        return forecatsAvg;
+        int forecatsAvgAvg = sum / days;
+        return forecatsAvgAvg;
     }
 }
 
